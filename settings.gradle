@@ -1,0 +1,3 @@
+rootProject.name = 'myjava'
+include 'thread'
+
