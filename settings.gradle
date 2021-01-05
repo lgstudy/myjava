@@ -1,3 +1,4 @@
 rootProject.name = 'myjava'
 include 'thread'
+include 'algorithm'
 

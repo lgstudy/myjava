@@ -78,8 +78,8 @@ allprojects{
 
     repositories {
         maven {
-            name 'aifocus-repository'
-            url 'http://nexus.webuy.ai/nexus/content/groups/public/'
+            name 'aliyun-repository'
+            url 'https://maven.aliyun.com/repository/central'
         }
         mavenCentral()
     }
