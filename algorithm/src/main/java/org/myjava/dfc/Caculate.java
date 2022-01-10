@@ -2,11 +2,11 @@ package org.myjava.dfc;
 
 public class Caculate {
     public static void main(String[] args) {
-        double p = 15.5;//当年利润
-        double a = 0.20;//第一段增长率
-        double b = 0.055;//第二段增长率
+        double p = 15.2;//当年利润
+        double a = 0.3;//第一段增长率
+        double b = 0.05;//第二段增长率
         double txl = 0.09;//折现率，要大于无风险收益率，要考虑股权资金成本，借贷成本，取值越大风险越大，通常7%～15%，建议取9%，这也是巴菲特当年的取值
-        int y = 4;//第一段年数
+        int y = 3;//第一段年数
         double z = 0 ;//折现总值
         int hb = 0 ;//货币资金(加)
         int cqgqtz = 0 ;//长期股权投资（加）
