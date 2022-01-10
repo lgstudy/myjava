@@ -2,36 +2,6 @@ plugins {
     id 'java'
 }
 
-ext {
-    mysqlVersion = '8.0.15'
-    springVersion = '5.1.6.RELEASE'
-    springBootVersion = '2.1.4.RELEASE'
-    slf4jVersion = '1.7.12'
-    fastjsonVersion = '1.2.62'
-
-    dubboVersion = '2.7.3-JINGLING'
-    ratelimiterVersion="1.3.0-RELEASE"
-
-    baseVersion = '1.4.2-RELEASE'
-
-    druidVersion = '1.1.10'
-    curatorVersion = '2.12.0'
-    JLBaseVersion='1.0.1-SNAPSHOT'
-    baseMqVersion='1.4.2-RELEASE'
-
-    memberVersion='1.8.5-RELEASE'
-    bbossVersion='1.1.1-SNAPSHOT'
-
-    procurementVersion='2.5.13-RELEASE'
-    tradeApiVersion = '1.9.22-RELEASE'
-    statisticsVersion = "1.0.31-RELEASE"
-    messageVersion='1.0.37-RELEASE'
-    elasticJobVersion='2.1.5-JINGLING'
-    baseVersion='1.4.6-RELEASE'
-    itemplatformVersion='2.2.9-RELEASE'
-    exhibitionPlatformVersion='1.0.47-RELEASE'
-}
-
 allprojects{
     group 'org.longgui.ai'
     version '1.0-SNAPSHOT'
@@ -45,7 +15,6 @@ allprojects{
     idea {
         module {
             downloadSources = true
-            downloadJavadoc = true
         }
     }
 
@@ -53,12 +22,6 @@ allprojects{
         provided
         compile.extendsFrom provided
         deployerJars
-
-        all*.exclude group: 'org.springframework', module: 'spring'
-        all*.exclude group: 'asm', module: 'asm'
-        all*.exclude group: 'org.slf4j' , module: 'slf4j-log4j12'
-        all*.exclude group: 'log4j' , module: 'log4j'
-        compile.exclude group: 'org.bouncycastle', module: 'bcprov-ext-jdk16'
     }
 
     task sourcesJar(type: Jar, dependsOn: classes) {
@@ -66,14 +29,8 @@ allprojects{
         from sourceSets.main.allSource
     }
 
-//    task javadocJar(type: Jar, dependsOn: javadoc) {
-//        classifier = 'javadoc'
-//        from javadoc.destinationDir
-//    }
-
     artifacts {
         archives sourcesJar
-//        archives javadocJar
     }
 
     repositories {
@@ -83,31 +40,6 @@ allprojects{
         }
         mavenCentral()
     }
-
-    configurations.all {
-
-        resolutionStrategy {
-            // check for updates every build
-            cacheChangingModulesFor 0, 'seconds'
-            force "org.apache.commons:commons-lang3:3.1"
-            force "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
-            force "org.apache.dubbo:dubbo:${dubboVersion}"
-            force 'com.aifocus:cloudstack-common:1.0.27-RELEASE'
-            force "org.apache.curator:curator-framework:2.12.0"
-            force "io.netty:netty-all:4.1.16.Final"
-            force "redis.clients:jedis:2.6.3"
-            force "org.aspectj:aspectjweaver:1.8.4"
-            force "com.alibaba:druid:${druidVersion}"
-            force "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
-            force "org.apache.curator:curator-framework:${curatorVersion}"
-            force "com.alibaba:fastjson:${fastjsonVersion}"
-            force "com.aifocus:aifocus-base:${JLBaseVersion}"
-            force "mysql:mysql-connector-java:${mysqlVersion}"
-            force "com.aifocus:message-common:${messageVersion}"
-            force "com.aifocus:itemplatform-api:${itemplatformVersion}"
-        }
-    }
-
     //在多模块下，不然编译失败，因为不会把信赖模块给打包
     jar {
         enabled = true
